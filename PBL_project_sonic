@@ -1,0 +1,51 @@
+#include <Ultrasonic.h>
+//install the libary Ultrasonic by ErickSimoes.
+
+Ultrasonic ultrasonic_1(35, 36);//(trig,echo)
+Ultrasonic ultrasonic_2(52, 53);
+Ultrasonic ultrasonic_3(49, 48);
+int distance_1=0;
+int distance_2=0;
+int distance_3=0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  
+  distance_1 = ultrasonic_1.read(); //不加參數就是輸出CM，可用read(INC)輸出英寸
+  distance_2 = ultrasonic_2.read(); //不加參數就是輸出CM，可用read(INC)輸出英寸
+  distance_3 = ultrasonic_3.read(); //不加參數就是輸出CM，可用read(INC)輸出英寸
+  
+  Serial.print("Distance in CM(1): ");
+  Serial.println(distance_1);
+  Serial.print("Distance in CM(2): ");
+  Serial.println(distance_2);
+  Serial.print("Distance in CM(3): ");
+  Serial.println(distance_3);
+  delay(500); //每次間格0.5秒
+
+int a=close_or_not_1(distance_1);
+int b=close_or_not_1(distance_2);
+int c=close_or_not_1(distance_3);
+int choice=100*a+10*b+c
+switch(choice){
+  case 001:turn_left_20_degree;
+  case 010:turn_right_20_degree;
+ // case 011:
+  case 100:turn_right_90_degree;
+  case 101:turn_right_90_degree;
+  case 110:turn_left_90_degree;
+  //case 111:
+}
+
+}
+
+  int close_or_not_1(int x){
+    if(x<10){
+      return 1;
+    }
+    else return 0;
+  }
+  
